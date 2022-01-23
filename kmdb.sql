@@ -81,7 +81,7 @@ CREATE TABLE movies (
     title TEXT,
     year_released INTEGER,
     mpaa_rating TEXT,
-    director_id TEXT
+    director_id INTEGER
 );
 
 CREATE TABLE actors (
