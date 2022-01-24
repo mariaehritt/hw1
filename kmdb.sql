@@ -93,8 +93,7 @@ CREATE TABLE actors (
 
 CREATE TABLE directors (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
-    movie_id INTEGER
+    name TEXT
 );
 
 -- Insert data into your database that reflects the sample data shown above
@@ -149,7 +148,7 @@ VALUES (
 "Christian Bale",
 "Bruce Wayne",
 "1"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -160,7 +159,7 @@ VALUES (
 "Michael Caine",
 "Alfred",
 "1"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -171,7 +170,7 @@ VALUES (
 "Liam Neeson",
 "Ra's Al Ghul",
 "1"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -182,7 +181,7 @@ VALUES (
 "Katie Holmes",
 "Rachel Dawes",
 "1"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -193,7 +192,7 @@ VALUES (
 "Gary Oldman",
 "Commissioner Gordon",
 "1"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -204,7 +203,7 @@ VALUES (
 "Christian Bale",
 "Bruce Wayne",
 "2"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -215,7 +214,7 @@ VALUES (
 "Heath Ledger",
 "Joker",
 "2"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -226,7 +225,7 @@ VALUES (
 "Aaron Eckhart",
 "Harvey Dent",
 "2"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -237,7 +236,7 @@ VALUES (
 "Michael Caine",
 "Alfred",
 "2"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -248,7 +247,7 @@ VALUES (
 "Maggie Gyllenhaal",
 "Rachel Dawes",
 "2"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -259,7 +258,7 @@ VALUES (
 "Christian Bale",
 "Bruce Wayne",
 "3"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -270,7 +269,7 @@ VALUES (
 "Gary Oldman",
 "Commissioner Gordon",
 "3"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -281,7 +280,7 @@ VALUES (
 "Tom Hardy",
 "Bane",
 "3"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -292,7 +291,7 @@ VALUES (
 "Joseph Gordon-Levitt",
 "John Blake",
 "3"
-)
+);
 
 INSERT INTO actors (
     name,
@@ -303,7 +302,14 @@ VALUES (
 "Anne Hathaway",
 "Selina Kyle",
 "3"
+);
+
+INSERT INTO directors (
+    name
 )
+VALUES (
+"Christopher Nolan"
+);
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -313,8 +319,8 @@ VALUES (
 -- The SQL statement for the movies output
 -- TODO!
 
-SELECT title, year_released, mpaa_rating, director
-FROM movies;
+SELECT movies.title, movies.year_released, movies.mpaa_rating, directors.name
+FROM movies INNER JOIN directors on directors.id = movies.director_id;
 
 -- Prints a header for the cast output
 .print ""
@@ -328,4 +334,3 @@ FROM movies;
 
 SELECT movies.title, actors.name, actors.character
 FROM movies INNER JOIN actors on movies.id = actors.movie_id
-GROUP BY movies.title
