@@ -72,6 +72,7 @@
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS directors;
+DROP TABLE IF EXISTS roles;
 
 -- Create new tables, according to your domain model
 -- TODO!
@@ -87,11 +88,16 @@ CREATE TABLE movies (
 CREATE TABLE actors (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
-    character TEXT,
+    role_id INTEGER,
     movie_id INTEGER
 );
 
 CREATE TABLE directors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+
+CREATE TABLE roles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT
 );
@@ -141,166 +147,166 @@ VALUES (
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Christian Bale",
-"Bruce Wayne",
+"3",
 "1"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Michael Caine",
-"Alfred",
+"1",
 "1"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Liam Neeson",
-"Ra's Al Ghul",
+"9",
 "1"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Katie Holmes",
-"Rachel Dawes",
+"8",
 "1"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Gary Oldman",
-"Commissioner Gordon",
+"4",
 "1"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Christian Bale",
-"Bruce Wayne",
+"3",
 "2"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Heath Ledger",
-"Joker",
+"7",
 "2"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Aaron Eckhart",
-"Harvey Dent",
+"5",
 "2"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Michael Caine",
-"Alfred",
+"1",
 "2"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Maggie Gyllenhaal",
-"Rachel Dawes",
+"8",
 "2"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Christian Bale",
-"Bruce Wayne",
+"3",
 "3"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Gary Oldman",
-"Commissioner Gordon",
+"4",
 "3"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Tom Hardy",
-"Bane",
+"2",
 "3"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Joseph Gordon-Levitt",
-"John Blake",
+"6",
 "3"
 );
 
 INSERT INTO actors (
     name,
-    character,
+    role_id,
     movie_id
 )
 VALUES (
 "Anne Hathaway",
-"Selina Kyle",
+"10",
 "3"
 );
 
@@ -309,6 +315,76 @@ INSERT INTO directors (
 )
 VALUES (
 "Christopher Nolan"
+);
+
+INSERT INTO roles (
+    name
+)
+VALUES (
+    "Alfred"
+);
+
+INSERT INTO roles (
+    name
+)
+VALUES (
+    "Bane"
+);
+
+INSERT INTO roles (
+    name
+)
+VALUES (
+    "Bruce Wayne"
+);
+
+INSERT INTO roles (
+    name
+)
+VALUES (
+    "Commissioner Gordon"
+);
+
+INSERT INTO roles (
+    name
+)
+VALUES (
+    "Harvey Dent"
+);
+
+INSERT INTO roles (
+    name
+)
+VALUES (
+    "John Blake"
+);
+
+INSERT INTO roles (
+    name
+)
+VALUES (
+    "Joker"
+);
+
+INSERT INTO roles (
+    name
+)
+VALUES (
+    "Rachel Dawes"
+);
+
+INSERT INTO roles (
+    name
+)
+VALUES (
+    "Ra's Al Ghul"
+);
+
+INSERT INTO roles (
+    name
+)
+VALUES (
+    "Selina Kyle"
 );
 
 -- Prints a header for the movies output
@@ -332,5 +408,7 @@ FROM movies INNER JOIN directors on directors.id = movies.director_id;
 -- The SQL statement for the cast output
 -- TODO!
 
-SELECT movies.title, actors.name, actors.character
-FROM movies INNER JOIN actors on movies.id = actors.movie_id
+SELECT movies.title, actors.name, roles.name
+FROM movies
+    INNER JOIN actors on movies.id = actors.movie_id
+    INNER JOIN roles on actors.role_id = roles.id;
