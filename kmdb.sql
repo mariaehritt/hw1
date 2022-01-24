@@ -412,3 +412,6 @@ SELECT movies.title, actors.name, roles.name
 FROM movies
     INNER JOIN actors on movies.id = actors.movie_id
     INNER JOIN roles on actors.role_id = roles.id;
+
+
+.width 22 22 22 22 22
